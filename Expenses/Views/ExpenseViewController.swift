@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ExpenseDetailsViewController:
+final class ExpenseViewController:
   UIViewController,
   UIImagePickerControllerDelegate,
   UINavigationControllerDelegate

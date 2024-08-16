@@ -1,28 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KLO-oS-W1H">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Expense Details View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Expences History View Controller-->
+        <scene sceneID="zv0-dF-kAZ">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ExpenseDetailsViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="KLO-oS-W1H" customClass="ExpencesHistoryViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mt3-X7-ixv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Omw-v9-6ef">
+                                <rect key="frame" x="16" y="59" width="361" height="32"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQB-gU-wPb">
+                                        <rect key="frame" x="329" y="0.0" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="ezJ-bb-6IU"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="plus.app" catalog="system" symbolScale="large" renderingMode="original"/>
+                                            <color key="baseForegroundColor" red="1" green="0.27058823529999998" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="presentation" id="6Oz-Zw-lhj"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ko-BF-ZsG">
+                                        <rect key="frame" x="0.0" y="0.0" width="141" height="32"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="background_color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="7dg-yt-yWr"/>
+                                    <constraint firstItem="5ko-BF-ZsG" firstAttribute="leading" secondItem="Omw-v9-6ef" secondAttribute="leading" id="7xj-SW-Zp1"/>
+                                    <constraint firstItem="5ko-BF-ZsG" firstAttribute="top" secondItem="Omw-v9-6ef" secondAttribute="top" id="BpB-R1-dn1"/>
+                                    <constraint firstItem="qQB-gU-wPb" firstAttribute="top" secondItem="Omw-v9-6ef" secondAttribute="top" id="SvS-a4-6dx"/>
+                                    <constraint firstAttribute="trailing" secondItem="qQB-gU-wPb" secondAttribute="trailing" id="bIr-tV-MtA"/>
+                                    <constraint firstAttribute="bottom" secondItem="qQB-gU-wPb" secondAttribute="bottom" id="dEt-1Y-qfi"/>
+                                    <constraint firstAttribute="bottom" secondItem="5ko-BF-ZsG" secondAttribute="bottom" id="t36-Ym-Mrw"/>
+                                    <constraint firstItem="qQB-gU-wPb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5ko-BF-ZsG" secondAttribute="trailing" constant="8" id="vgJ-p5-h2l"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="LYv-A1-pgX">
+                                <rect key="frame" x="0.0" y="107" width="393" height="745"/>
+                                <color key="backgroundColor" name="background_color"/>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="KLO-oS-W1H" id="f31-wm-E7h"/>
+                                    <outlet property="delegate" destination="KLO-oS-W1H" id="rWT-kg-CeV"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Eoj-3r-HOg"/>
+                        <color key="backgroundColor" name="background_color"/>
+                        <constraints>
+                            <constraint firstItem="Eoj-3r-HOg" firstAttribute="trailing" secondItem="LYv-A1-pgX" secondAttribute="trailing" id="3Ob-CT-WEz"/>
+                            <constraint firstItem="Omw-v9-6ef" firstAttribute="top" secondItem="Eoj-3r-HOg" secondAttribute="top" id="3rx-jM-Qfv"/>
+                            <constraint firstItem="Eoj-3r-HOg" firstAttribute="trailing" secondItem="Omw-v9-6ef" secondAttribute="trailing" constant="16" id="5vW-x0-2be"/>
+                            <constraint firstAttribute="bottom" secondItem="LYv-A1-pgX" secondAttribute="bottom" id="GfV-fc-lQs"/>
+                            <constraint firstItem="Omw-v9-6ef" firstAttribute="leading" secondItem="Eoj-3r-HOg" secondAttribute="leading" constant="16" id="Jjl-st-f7R"/>
+                            <constraint firstItem="LYv-A1-pgX" firstAttribute="leading" secondItem="Eoj-3r-HOg" secondAttribute="leading" id="ahI-9c-r2D"/>
+                            <constraint firstItem="LYv-A1-pgX" firstAttribute="top" secondItem="Omw-v9-6ef" secondAttribute="bottom" constant="16" id="kTS-Vb-PNH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="expencesTableView" destination="LYv-A1-pgX" id="13Q-YC-opW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vOJ-Iw-c6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-734" y="4"/>
+        </scene>
+        <!--Expense View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ExpenseViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="03t-X7-nTi">
-                                <rect key="frame" x="0.0" y="61.666666666666671" width="393" height="194.33333333333331"/>
-                                <color key="tintColor" systemColor="underPageBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="3.3333333333333286" width="393" height="193.66666666666669"/>
+                                <color key="backgroundColor" name="background_color"/>
+                                <color key="tintColor" name="dark_gray_1C1C1E"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="kwB-Qb-jcD"/>
                                 </constraints>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="thin"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="4"/>
@@ -30,13 +107,15 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Jyb-Jc-3Zp">
-                                <rect key="frame" x="8" y="275" width="377" height="64"/>
+                                <rect key="frame" x="8" y="216" width="377" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kcj-d9-DRa">
                                         <rect key="frame" x="0.0" y="0.0" width="184.66666666666666" height="64"/>
-                                        <color key="backgroundColor" red="0.27450981740000002" green="0.27450981740000002" blue="0.270588249" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" name="components_background_color"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Select image"/>
+                                        <state key="normal" title="Select image">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="4"/>
@@ -48,9 +127,11 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5p-kZ-e7f">
                                         <rect key="frame" x="192.66666666666663" y="0.0" width="184.33333333333337" height="64"/>
-                                        <color key="backgroundColor" red="0.27450980392156865" green="0.27450980392156865" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" name="components_background_color"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Take photo"/>
+                                        <state key="normal" title="Take photo">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="4"/>
@@ -61,6 +142,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" name="background_color"/>
                                 <constraints>
                                     <constraint firstItem="Kcj-d9-DRa" firstAttribute="width" secondItem="L5p-kZ-e7f" secondAttribute="width" id="bVp-sN-l3c"/>
                                     <constraint firstAttribute="height" constant="64" id="p9x-tN-FAe"/>
@@ -73,7 +155,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="background_color"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jyb-Jc-3Zp" secondAttribute="trailing" constant="8" id="5gr-xt-XrY"/>
                             <constraint firstItem="03t-X7-nTi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="H4m-IK-waT"/>
@@ -83,6 +165,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="03t-X7-nTi" secondAttribute="trailing" id="k3G-tC-jEh"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="qH8-aJ-O6M"/>
                     <connections>
                         <outlet property="expenseImageView" destination="03t-X7-nTi" id="CYF-6z-XLf"/>
                     </connections>
@@ -94,11 +177,18 @@
     </scenes>
     <resources>
         <image name="camera" catalog="system" width="128" height="93"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="underPageBackgroundColor">
-            <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="plus.app" catalog="system" width="128" height="114"/>
+        <namedColor name="background_color">
+            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="components_background_color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="dark_gray_1C1C1E">
+            <color red="0.10980392156862745" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

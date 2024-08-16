@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpenseTableViewCell" rowHeight="21" id="vi1-b3-GYa" customClass="ExpenseTableViewCell" customModule="Expenses" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="352" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vi1-b3-GYa" id="D3v-xk-hBw">
+                <rect key="frame" x="0.0" y="0.0" width="352" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visma 1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vit-iG-Wjk">
+                        <rect key="frame" x="16" y="8" width="306" height="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13 August, 13:45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5d-eO-Syu">
+                        <rect key="frame" x="16" y="29.666666666666668" width="95" height="14.333333333333332"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2X-Dt-CGR">
+                        <rect key="frame" x="305.33333333333331" y="19.666666666666668" width="30.666666666666686" height="21.000000000000004"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwq-Rf-Gct">
+                        <rect key="frame" x="271.33333333333331" y="23" width="26" height="14.333333333333336"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" name="components_background_color"/>
+                <constraints>
+                    <constraint firstItem="S5d-eO-Syu" firstAttribute="leading" secondItem="D3v-xk-hBw" secondAttribute="leading" constant="16" id="NWe-L3-tn6"/>
+                    <constraint firstItem="Vit-iG-Wjk" firstAttribute="top" secondItem="D3v-xk-hBw" secondAttribute="top" constant="8" id="Nqc-SA-dG1"/>
+                    <constraint firstItem="x2X-Dt-CGR" firstAttribute="centerY" secondItem="D3v-xk-hBw" secondAttribute="centerY" id="SEX-Id-PZi"/>
+                    <constraint firstItem="x2X-Dt-CGR" firstAttribute="leading" secondItem="wwq-Rf-Gct" secondAttribute="trailing" constant="8" id="cYc-0N-4ST"/>
+                    <constraint firstItem="Vit-iG-Wjk" firstAttribute="leading" secondItem="D3v-xk-hBw" secondAttribute="leading" constant="16" id="mgy-QT-0oP"/>
+                    <constraint firstItem="wwq-Rf-Gct" firstAttribute="centerY" secondItem="D3v-xk-hBw" secondAttribute="centerY" id="obp-Lb-d2u"/>
+                    <constraint firstAttribute="trailing" secondItem="x2X-Dt-CGR" secondAttribute="trailing" constant="16" id="otF-le-tfi"/>
+                    <constraint firstAttribute="bottom" secondItem="S5d-eO-Syu" secondAttribute="bottom" constant="16" id="rsc-r0-WRf"/>
+                    <constraint firstAttribute="trailing" secondItem="Vit-iG-Wjk" secondAttribute="trailing" constant="30" id="uRa-EF-ZiL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="expenseCurrencyLabel" destination="wwq-Rf-Gct" id="iQF-yb-4Hd"/>
+                <outlet property="expenseDateLabel" destination="S5d-eO-Syu" id="V92-gk-xaO"/>
+                <outlet property="expensePriceLabel" destination="x2X-Dt-CGR" id="B1l-J5-smU"/>
+                <outlet property="expenseTitleLabel" destination="Vit-iG-Wjk" id="W52-Ic-lhH"/>
+            </connections>
+            <point key="canvasLocation" x="-1265.6488549618321" y="-383.80281690140845"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="components_background_color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

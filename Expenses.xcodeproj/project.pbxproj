@@ -9,13 +9,18 @@
 /* Begin PBXBuildFile section */
 		6862881E2C6D06AE002300D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862881D2C6D06AE002300D0 /* AppDelegate.swift */; };
 		686288202C6D06AE002300D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862881F2C6D06AE002300D0 /* SceneDelegate.swift */; };
-		686288222C6D06AE002300D0 /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686288212C6D06AE002300D0 /* ExpenseDetailsViewController.swift */; };
+		686288222C6D06AE002300D0 /* ExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686288212C6D06AE002300D0 /* ExpenseViewController.swift */; };
 		686288252C6D06AE002300D0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 686288242C6D06AE002300D0 /* Base */; };
 		686288272C6D06AF002300D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 686288262C6D06AF002300D0 /* Assets.xcassets */; };
 		6862882A2C6D06AF002300D0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 686288292C6D06AF002300D0 /* Base */; };
 		686288352C6D06B0002300D0 /* ExpensesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686288342C6D06B0002300D0 /* ExpensesTests.swift */; };
 		6862883F2C6D06B0002300D0 /* ExpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862883E2C6D06B0002300D0 /* ExpensesUITests.swift */; };
 		686288412C6D06B0002300D0 /* ExpensesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686288402C6D06B0002300D0 /* ExpensesUITestsLaunchTests.swift */; };
+		686288542C6E20D0002300D0 /* ExpencesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686288532C6E20D0002300D0 /* ExpencesHistoryViewController.swift */; };
+		686288572C6E46FF002300D0 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686288562C6E46FF002300D0 /* ExpenseTableViewCell.swift */; };
+		686288592C6E4764002300D0 /* ExpenseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686288582C6E4764002300D0 /* ExpenseTableViewCell.xib */; };
+		6862885B2C6E57BA002300D0 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862885A2C6E57BA002300D0 /* Expense.swift */; };
+		6862885E2C6E59B0002300D0 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862885D2C6E59B0002300D0 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +44,7 @@
 		6862881A2C6D06AE002300D0 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6862881D2C6D06AE002300D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6862881F2C6D06AE002300D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		686288212C6D06AE002300D0 /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
+		686288212C6D06AE002300D0 /* ExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewController.swift; sourceTree = "<group>"; };
 		686288242C6D06AE002300D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		686288262C6D06AF002300D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		686288292C6D06AF002300D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +54,11 @@
 		6862883A2C6D06B0002300D0 /* ExpensesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpensesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6862883E2C6D06B0002300D0 /* ExpensesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesUITests.swift; sourceTree = "<group>"; };
 		686288402C6D06B0002300D0 /* ExpensesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		686288532C6E20D0002300D0 /* ExpencesHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpencesHistoryViewController.swift; sourceTree = "<group>"; };
+		686288562C6E46FF002300D0 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
+		686288582C6E4764002300D0 /* ExpenseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseTableViewCell.xib; sourceTree = "<group>"; };
+		6862885A2C6E57BA002300D0 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		6862885D2C6E59B0002300D0 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +111,7 @@
 			children = (
 				6862881D2C6D06AE002300D0 /* AppDelegate.swift */,
 				6862881F2C6D06AE002300D0 /* SceneDelegate.swift */,
+				6862885C2C6E593E002300D0 /* Extensions */,
 				686288502C6DF308002300D0 /* Services */,
 				6862884D2C6DF2DA002300D0 /* Models */,
 				6862884F2C6DF2F8002300D0 /* ViewModels */,
@@ -131,6 +142,7 @@
 		6862884D2C6DF2DA002300D0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6862885A2C6E57BA002300D0 /* Expense.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -138,8 +150,10 @@
 		6862884E2C6DF2F1002300D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				686288552C6E46A4002300D0 /* Cells */,
 				686288522C6DF3B9002300D0 /* Storyboards */,
-				686288212C6D06AE002300D0 /* ExpenseDetailsViewController.swift */,
+				686288532C6E20D0002300D0 /* ExpencesHistoryViewController.swift */,
+				686288212C6D06AE002300D0 /* ExpenseViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,6 +187,23 @@
 				686288282C6D06AF002300D0 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		686288552C6E46A4002300D0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				686288562C6E46FF002300D0 /* ExpenseTableViewCell.swift */,
+				686288582C6E4764002300D0 /* ExpenseTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		6862885C2C6E593E002300D0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6862885D2C6E59B0002300D0 /* DateExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				686288592C6E4764002300D0 /* ExpenseTableViewCell.xib in Resources */,
 				686288272C6D06AF002300D0 /* Assets.xcassets in Resources */,
 				6862882A2C6D06AF002300D0 /* Base in Resources */,
 				686288252C6D06AE002300D0 /* Base in Resources */,
@@ -306,9 +338,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				686288222C6D06AE002300D0 /* ExpenseDetailsViewController.swift in Sources */,
+				6862885B2C6E57BA002300D0 /* Expense.swift in Sources */,
+				6862885E2C6E59B0002300D0 /* DateExtension.swift in Sources */,
+				686288572C6E46FF002300D0 /* ExpenseTableViewCell.swift in Sources */,
+				686288222C6D06AE002300D0 /* ExpenseViewController.swift in Sources */,
 				6862881E2C6D06AE002300D0 /* AppDelegate.swift in Sources */,
 				686288202C6D06AE002300D0 /* SceneDelegate.swift in Sources */,
+				686288542C6E20D0002300D0 /* ExpencesHistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
