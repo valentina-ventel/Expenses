@@ -47,7 +47,12 @@ struct Expense {
       Expense(id: 6, title: "Lidl", date: Date.now, price: 100, currency: "RON", type: .invoices),
       Expense(id: 7, title: "Auchan", date: Date.now, price: 300, currency: "RON", type: .receipts),
       Expense(id: 8, title: "Dyson", date: Date.now, price: 4000, currency: "RON", type: .invoices),
-      Expense(id: 9, title: "iStyle", date: Date.now, price: 6400, currency: "RON", type: .receipts)
+      Expense(id: 9, title: "iStyle", date: Date.now, price: 6400, currency: "RON", type: .receipts),
+      Expense(id: 2, title: "Mega image", date: Date(timeIntervalSince1970: 1705415794), price: 200, currency: "RON", type: .invoices),
+      Expense(id: 3, title: "Vivo", date: Date(timeIntervalSince1970: 1706106994), price: 350, currency: "RON", type: .receipts),
+      Expense(id: 4, title: "Zara", date: Date(timeIntervalSince1970: 1674570994), price: 200, currency: "RON", type: .invoices),
+      Expense(id: 0, title: "Visma", date: Date(timeIntervalSince1970: 1432233446145.0/1000.0), price: 2000, currency: "RON", type: .invoices),
+      Expense(id: 1, title: "eMag", date: Date(timeIntervalSince1970: 1431024488), price: 3500, currency: "RON", type: .receipts)
     ]
   }
 }

@@ -15,9 +15,9 @@ final class ExpenseTableViewCell: UITableViewCell {
   
   func updateUIWithData(expense: Expense) {
     expenseTitleLabel.text = expense.title
-    expenseDateLabel.text = expense.date.dMHmformatDate()
+    expenseDateLabel.text = expense.date.convertToString_dMHm_format()
     expenseCurrencyLabel.text = expense.currency
     expensePriceLabel.text = "\(expense.price)"
-
   }
+
 }

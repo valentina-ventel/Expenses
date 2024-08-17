@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Expences History View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="zv0-dF-kAZ">
             <objects>
-                <viewController id="KLO-oS-W1H" customClass="ExpencesHistoryViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KLO-oS-W1H" customClass="MainViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mt3-X7-ixv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,10 +22,7 @@
                                 <rect key="frame" x="16" y="59" width="361" height="32"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQB-gU-wPb">
-                                        <rect key="frame" x="329" y="0.0" width="32" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="ezJ-bb-6IU"/>
-                                        </constraints>
+                                        <rect key="frame" x="312" y="0.0" width="49" height="32"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
@@ -33,7 +30,7 @@
                                             <color key="baseForegroundColor" red="1" green="0.27058823529999998" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="presentation" id="6Oz-Zw-lhj"/>
+                                            <segue destination="BYZ-38-t0r" kind="presentation" identifier="showExpenseSegue" id="6Oz-Zw-lhj"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ko-BF-ZsG">
@@ -54,8 +51,8 @@
                                     <constraint firstItem="qQB-gU-wPb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5ko-BF-ZsG" secondAttribute="trailing" constant="8" id="vgJ-p5-h2l"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="LYv-A1-pgX">
-                                <rect key="frame" x="0.0" y="107" width="393" height="745"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="LYv-A1-pgX">
+                                <rect key="frame" x="0.0" y="91" width="393" height="761"/>
                                 <color key="backgroundColor" name="background_color"/>
                                 <sections/>
                                 <connections>
@@ -73,7 +70,7 @@
                             <constraint firstAttribute="bottom" secondItem="LYv-A1-pgX" secondAttribute="bottom" id="GfV-fc-lQs"/>
                             <constraint firstItem="Omw-v9-6ef" firstAttribute="leading" secondItem="Eoj-3r-HOg" secondAttribute="leading" constant="16" id="Jjl-st-f7R"/>
                             <constraint firstItem="LYv-A1-pgX" firstAttribute="leading" secondItem="Eoj-3r-HOg" secondAttribute="leading" id="ahI-9c-r2D"/>
-                            <constraint firstItem="LYv-A1-pgX" firstAttribute="top" secondItem="Omw-v9-6ef" secondAttribute="bottom" constant="16" id="kTS-Vb-PNH"/>
+                            <constraint firstItem="LYv-A1-pgX" firstAttribute="top" secondItem="Omw-v9-6ef" secondAttribute="bottom" id="kTS-Vb-PNH"/>
                         </constraints>
                     </view>
                     <connections>
