@@ -7,7 +7,7 @@
 
 import Foundation
 
-func groupExpensesByMonth(expenses: [Expense]) -> [Date: [Expense]] {
+func groupExpensesByMonth(expenses: [DBExpense]) -> [Date: [DBExpense]] {
   Dictionary(grouping: expenses) { expense in
     let components = Calendar.current.dateComponents([.year, .month], from: expense.date)
     return Calendar.current.date(from: components)!

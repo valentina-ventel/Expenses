@@ -2,7 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +23,7 @@
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fcw-zA-Yza"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="background_color"/>
             <constraints>
                 <constraint firstItem="fBg-1b-ky6" firstAttribute="leading" secondItem="fcw-zA-Yza" secondAttribute="leading" constant="16" id="3FI-fF-lhu"/>
                 <constraint firstItem="fcw-zA-Yza" firstAttribute="trailing" secondItem="fBg-1b-ky6" secondAttribute="trailing" constant="16" id="I0o-IA-n9X"/>
@@ -34,4 +36,9 @@
             <point key="canvasLocation" x="-960.30534351145036" y="106.33802816901409"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="background_color">
+            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
 </document>

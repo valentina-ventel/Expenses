@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KLO-oS-W1H">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -27,7 +28,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <imageReference key="image" image="plus.app" catalog="system" symbolScale="large" renderingMode="original"/>
-                                            <color key="baseForegroundColor" red="1" green="0.27058823529999998" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="baseForegroundColor" name="red_app_color"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <segue destination="BYZ-38-t0r" kind="presentation" identifier="showExpenseSegue" id="6Oz-Zw-lhj"/>
@@ -150,21 +151,103 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MSF-Aw-W2u">
+                                <rect key="frame" x="8" y="288" width="377" height="314"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Expense title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mp6-l1-uJ6">
+                                        <rect key="frame" x="0.0" y="0.0" width="377" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="jH6-bs-nch"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="oeh-ez-hv4"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Expense Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rym-o7-fdV">
+                                        <rect key="frame" x="0.0" y="52" width="377" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="4uq-ZU-vxO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="4ra-Qx-vUt"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Currency" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HEQ-ez-dLb">
+                                        <rect key="frame" x="0.0" y="104" width="377" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="hMD-U0-f8x"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="s8C-gI-Mxc"/>
+                                        </connections>
+                                    </textField>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRv-hn-MKX">
+                                        <rect key="frame" x="0.0" y="156" width="377" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="tag-YG-E2k"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="leW-yo-vDn"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="LBZ-zT-pAt"/>
+                                        </connections>
+                                    </pickerView>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ces-TS-s1A">
+                                        <rect key="frame" x="0.0" y="264" width="377" height="50"/>
+                                    </datePicker>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCX-j5-AwC">
+                                <rect key="frame" x="8" y="774" width="377" height="44"/>
+                                <color key="backgroundColor" name="components_background_color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="OY9-ok-kcb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" name="red_app_color"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="saveExpenseAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Gj-Kr-Mlr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="background_color"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jyb-Jc-3Zp" secondAttribute="trailing" constant="8" id="5gr-xt-XrY"/>
+                            <constraint firstItem="lCX-j5-AwC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="9v1-QW-5DF"/>
                             <constraint firstItem="03t-X7-nTi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="H4m-IK-waT"/>
                             <constraint firstItem="03t-X7-nTi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OW6-89-RCd"/>
                             <constraint firstItem="Jyb-Jc-3Zp" firstAttribute="top" secondItem="03t-X7-nTi" secondAttribute="bottom" constant="16" id="Qg9-wS-cgu"/>
+                            <constraint firstItem="MSF-Aw-W2u" firstAttribute="top" secondItem="Jyb-Jc-3Zp" secondAttribute="bottom" constant="8" id="Ubo-XI-pgh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lCX-j5-AwC" secondAttribute="trailing" constant="8" id="Z97-Ac-rDJ"/>
                             <constraint firstItem="Jyb-Jc-3Zp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="fOa-cx-pjC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="03t-X7-nTi" secondAttribute="trailing" id="k3G-tC-jEh"/>
+                            <constraint firstItem="MSF-Aw-W2u" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="l91-eb-hh2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MSF-Aw-W2u" secondAttribute="trailing" constant="8" id="ljB-2b-w46"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lCX-j5-AwC" secondAttribute="bottom" constant="24" id="t4e-Ut-8gw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qH8-aJ-O6M"/>
                     <connections>
+                        <outlet property="expenseCurrencyTextField" destination="HEQ-ez-dLb" id="WHI-L8-CSo"/>
+                        <outlet property="expenseDatePicker" destination="ces-TS-s1A" id="exK-Ux-z1M"/>
                         <outlet property="expenseImageView" destination="03t-X7-nTi" id="CYF-6z-XLf"/>
+                        <outlet property="expensePriceTextField" destination="Rym-o7-fdV" id="TUq-A3-xNj"/>
+                        <outlet property="expenseTitleTextField" destination="Mp6-l1-uJ6" id="EHN-f0-OMH"/>
+                        <outlet property="expenseTypePicker" destination="dRv-hn-MKX" id="pvr-1m-JkK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -182,7 +265,10 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="dark_gray_1C1C1E">
-            <color red="0.10980392156862745" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.10999999940395355" green="0.10999999940395355" blue="0.11800000071525574" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="red_app_color">
+            <color red="1" green="0.27058823529411763" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

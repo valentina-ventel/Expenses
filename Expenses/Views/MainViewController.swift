@@ -22,11 +22,13 @@ final class MainViewController:
 
   @IBOutlet private weak var expencesTableView: UITableView?
 
-  private var expensesDictionary = [Date: [Expense]] ()
+  private var expensesLocalService: ExpensesService?
+  private var expensesDictionary = [Date: [DBExpense]] ()
   private var expensesMonths = [Date]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
     expencesTableView?.register(
       UINib(nibName: Constants.expenseCellIdentifier, bundle: nil),
       forCellReuseIdentifier: Constants.expenseCellIdentifier
@@ -37,7 +39,7 @@ final class MainViewController:
     )
     expencesTableView?.showsVerticalScrollIndicator = false
 
-    expensesDictionary = groupExpensesByMonth(expenses: Expense.dummyExpenses)
+    expensesDictionary = groupExpensesByMonth(expenses: dummyExpenses)
     expensesMonths = expensesDictionary.keys.sorted {$0 > $1}
   }
   

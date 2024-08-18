@@ -13,7 +13,7 @@ final class ExpenseTableViewCell: UITableViewCell {
   @IBOutlet private weak var expenseCurrencyLabel: UILabel!
   @IBOutlet private weak var expensePriceLabel: UILabel!
   
-  func updateUIWithData(expense: Expense) {
+  func updateUIWithData(expense: DBExpense) {
     expenseTitleLabel.text = expense.title
     expenseDateLabel.text = expense.date.convertToString_dMHm_format()
     expenseCurrencyLabel.text = expense.currency
