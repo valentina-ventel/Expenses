@@ -25,14 +25,18 @@ final class ExpenseViewController:
   @IBOutlet private weak var expenseTypePicker: UIPickerView!
   @IBOutlet private weak var expenseDatePicker: UIDatePicker!
   @IBOutlet weak var expenseCurrencyTextField: UITextField!
+  @IBOutlet weak var activityIndicatorView: UIView!
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
   private var imagePickerController: UIImagePickerController? = UIImagePickerController()
   private var selectedExpenseTypePickerIndex: Int = 0
+  private var expenseImage: UIImage?
 
   var expenseViewModel: ExpenseViewModel?
 
   required init?(coder: NSCoder) {
     super.init(coder: coder)
+    
     guard let expenseService = ExpensesService() else { fatalError("Failed Expenses Service") }
     self.expenseViewModel = ExpenseViewModel(service: expenseService)
   }
@@ -40,12 +44,74 @@ final class ExpenseViewController:
   override func viewDidLoad() {
     super.viewDidLoad()
     imagePickerController?.delegate = self
+    setupActivityIndicatorState(true)
+    setupBindings()
   }
-
-  private func setupUI(for expense: DBExpense) {
-    // TODO
-    expenseTitleTextField.text = expense.title
-    expensePriceTextField.text = "\(expense.price)"
+  
+  private func setupUI(
+    for expense: Bool = true,
+    image: UIImage = UIImage(systemName: "camera") ?? UIImage(),
+    title: String = "",
+    date: Date = Date.now,
+    price: Float = 0.0,
+    currency: String = "",
+    type: ExpenseType = ExpenseType.receipt
+  ) {
+    expense
+    ? nil
+    : self.showAlertPopup(
+        title: "Congratulation",
+        message: "A new expense was added successfully!"
+    )
+    DispatchQueue.main.async {
+      self.expenseImageView.image = image
+      self.expenseTitleTextField.text = title
+      self.expensePriceTextField.text = String(describing: price)
+      self.expenseCurrencyTextField.text = currency
+      self.expenseDatePicker.date = date
+      self.expenseTypePicker.selectRow(
+        type.rawValue,
+        inComponent: 0,
+        animated: false
+      )
+    }
+  }
+  
+  private func setupBindings() {
+    expenseViewModel?.errorObservable.bind() { [weak self] errorMessage in
+      errorMessage.isEmpty
+      ? nil
+      : self?.showAlertPopup(
+          title: "Error",
+          message: errorMessage
+      )
+    }
+    expenseViewModel?.expenseWasAddedSuccessfully.bind() { [weak self] wasSuccessfully in
+      !wasSuccessfully
+      ? nil
+      : self?.setupUI(for: false)
+    }
+  }
+  
+  private func setupActivityIndicatorState(_ isHidden: Bool) {
+    activityIndicatorView.isHidden = isHidden
+    isHidden ? activityIndicator.stopAnimating() : activityIndicator.startAnimating()
+  }
+  
+  private func showAlertPopup(
+    title: String,
+    message: String
+  ) {
+    let alertController = customAlertController(
+      title: title,
+      message: message,
+      buttonTitle: "Ok"
+    )
+    self.present(
+      alertController,
+      animated: true,
+      completion: nil
+    )
   }
 
   @IBAction private func takePhotoAction(
@@ -55,7 +121,7 @@ final class ExpenseViewController:
     guard let imagePickerController = imagePickerController else { return }
     present(imagePickerController, animated: true, completion: nil)
   }
-
+  
   @IBAction private func selectImageAction(
     _ sender: Any
   ) {
@@ -63,13 +129,24 @@ final class ExpenseViewController:
     guard let imagePickerController = imagePickerController else { return }
     present(imagePickerController, animated: true, completion: nil)
   }
-
-  @IBAction func saveExpenseAction(_ sender: Any) {
-    guard let expenseTitle = expenseTitleTextField.text else { return }
-    guard let expensePrice = expensePriceTextField.text else { return }
-    guard let expenseCurrency = expenseCurrencyTextField.text else { return }
   
+  @IBAction func saveExpenseAction(_ sender: Any) {
+    guard let expenseTitle = expenseTitleTextField.text,
+          let expensePrice = expensePriceTextField.text,
+          let expenseCurrency = expenseCurrencyTextField.text,
+          !expenseTitle.isEmpty,
+          !expensePrice.isEmpty,
+          !expenseCurrency.isEmpty
+    else {
+      showAlertPopup(
+        title: "Error",
+        message: "The expense infos are required"
+      )
+      return
+    }
+    
     expenseViewModel?.addExpense(
+      expenseImage: expenseImage,
       title: expenseTitle,
       date: expenseDatePicker.date,
       price: Float(expensePrice) ?? 0.0,
@@ -77,15 +154,16 @@ final class ExpenseViewController:
       type: ExpenseType.allCases[selectedExpenseTypePickerIndex]
     )
   }
-
+  
   // MARK: UIImagePickerDelegate
-
+  
   func imagePickerController(
     _ picker: UIImagePickerController,
     didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
   ) {
     picker.dismiss(animated: true, completion: nil)
     guard let image = info[.originalImage] as? UIImage  else { return }
+    expenseImage = image
     expenseImageView.image = image
   }
   
@@ -100,7 +178,7 @@ final class ExpenseViewController:
   }
   
   // MARK: UIPickerViewDelegate && UIPickerViewDataSource
-
+  
   func pickerView(
     _ pickerView: UIPickerView,
     titleForRow row: Int,
@@ -108,7 +186,7 @@ final class ExpenseViewController:
   ) -> String? {
     return ExpenseType.allCases[row].stringValue
   }
-
+  
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return Constants.pickerViewComponentsNumber
   }
@@ -119,7 +197,7 @@ final class ExpenseViewController:
   ) -> Int {
     return ExpenseType.allCases.count
   }
-
+  
   func pickerView(
     _ pickerView: UIPickerView,
     didSelectRow row: Int,

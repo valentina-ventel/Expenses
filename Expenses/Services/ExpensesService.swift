@@ -9,7 +9,10 @@ import Foundation
 import RealmSwift
 
 protocol ExpenseServiceProtocol {
-  func addExpense(expense: DBExpense)
+  func addExpense(
+    expense: Expense,
+    completionHandler: @escaping(Result<Void, Error>) -> ()
+  )
   func getAllExpenses()
 }
 
@@ -24,13 +27,18 @@ struct ExpensesService: ExpenseServiceProtocol {
     }
   }
   
-  func addExpense(expense: DBExpense) {
+  func addExpense(
+    expense: Expense,
+    completionHandler: @escaping(Result<Void, Error>) -> ()
+  ) {
+    let dbExpense = DBExpense(expense: expense)
     do {
       try realmDB.write() {
-        realmDB.add(expense)
+        realmDB.add(dbExpense)
       }
+      completionHandler(.success(()))
     } catch {
-      print(error)
+      completionHandler(.failure(error))
     }
     getAllExpenses()
   }
@@ -40,6 +48,7 @@ struct ExpensesService: ExpenseServiceProtocol {
     
     // Do something with the fetched data
     for expense in expenses {
+      print(expense.imageData)
       print("Expense Title: \(expense.title), Value: \(expense.price)")
     }
     print("---------------")

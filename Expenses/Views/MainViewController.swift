@@ -23,7 +23,7 @@ final class MainViewController:
   @IBOutlet private weak var expencesTableView: UITableView?
 
   private var expensesLocalService: ExpensesService?
-  private var expensesDictionary = [Date: [DBExpense]] ()
+  private var expensesDictionary = [Date: [Expense]] ()
   private var expensesMonths = [Date]()
 
   override func viewDidLoad() {

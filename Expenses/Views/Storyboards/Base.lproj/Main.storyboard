@@ -222,26 +222,52 @@
                                     <action selector="saveExpenseAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Gj-Kr-Mlr"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUO-fR-2CL">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="rVg-bl-XHD">
+                                        <rect key="frame" x="174.66666666666666" y="399" width="44" height="44"/>
+                                        <color key="tintColor" name="red_app_color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Hz5-5s-phn"/>
+                                            <constraint firstAttribute="width" constant="44" id="mhX-O7-saf"/>
+                                        </constraints>
+                                        <color key="color" name="red_app_color"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="rVg-bl-XHD" firstAttribute="centerY" secondItem="LUO-fR-2CL" secondAttribute="centerY" id="ltU-oC-8VY"/>
+                                    <constraint firstItem="rVg-bl-XHD" firstAttribute="centerX" secondItem="LUO-fR-2CL" secondAttribute="centerX" id="rKA-4D-4Ay"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="background_color"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jyb-Jc-3Zp" secondAttribute="trailing" constant="8" id="5gr-xt-XrY"/>
+                            <constraint firstItem="LUO-fR-2CL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7A2-cf-aIx"/>
                             <constraint firstItem="lCX-j5-AwC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="9v1-QW-5DF"/>
+                            <constraint firstAttribute="bottom" secondItem="LUO-fR-2CL" secondAttribute="bottom" id="Fxm-9H-P2n"/>
                             <constraint firstItem="03t-X7-nTi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="H4m-IK-waT"/>
                             <constraint firstItem="03t-X7-nTi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OW6-89-RCd"/>
                             <constraint firstItem="Jyb-Jc-3Zp" firstAttribute="top" secondItem="03t-X7-nTi" secondAttribute="bottom" constant="16" id="Qg9-wS-cgu"/>
                             <constraint firstItem="MSF-Aw-W2u" firstAttribute="top" secondItem="Jyb-Jc-3Zp" secondAttribute="bottom" constant="8" id="Ubo-XI-pgh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LUO-fR-2CL" secondAttribute="trailing" id="Wd5-My-Dc1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lCX-j5-AwC" secondAttribute="trailing" constant="8" id="Z97-Ac-rDJ"/>
                             <constraint firstItem="Jyb-Jc-3Zp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="fOa-cx-pjC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="03t-X7-nTi" secondAttribute="trailing" id="k3G-tC-jEh"/>
                             <constraint firstItem="MSF-Aw-W2u" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="l91-eb-hh2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MSF-Aw-W2u" secondAttribute="trailing" constant="8" id="ljB-2b-w46"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lCX-j5-AwC" secondAttribute="bottom" constant="24" id="t4e-Ut-8gw"/>
+                            <constraint firstItem="LUO-fR-2CL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="uXQ-Ru-Dvx"/>
+                            <constraint firstItem="LUO-fR-2CL" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ug9-72-M0F"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qH8-aJ-O6M"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="rVg-bl-XHD" id="JCV-6K-Ro2"/>
+                        <outlet property="activityIndicatorView" destination="LUO-fR-2CL" id="2uc-rt-7TO"/>
                         <outlet property="expenseCurrencyTextField" destination="HEQ-ez-dLb" id="WHI-L8-CSo"/>
                         <outlet property="expenseDatePicker" destination="ces-TS-s1A" id="exK-Ux-z1M"/>
                         <outlet property="expenseImageView" destination="03t-X7-nTi" id="CYF-6z-XLf"/>

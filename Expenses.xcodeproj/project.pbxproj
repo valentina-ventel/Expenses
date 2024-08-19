@@ -29,6 +29,7 @@
 		68CAF9A52C7203090074343D /* ExpensesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9A42C7203090074343D /* ExpensesService.swift */; };
 		68CAF9A82C722E6F0074343D /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9A72C722E6F0074343D /* Observable.swift */; };
 		68CAF9AA2C722EF20074343D /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9A92C722EF20074343D /* ExpenseViewModel.swift */; };
+		68CAF9AD2C733D630074343D /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9AC2C733D630074343D /* Expense.swift */; };
 		C67A9209C0FDA657BFC04064 /* Pods_Expenses_ExpensesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EFDB3D63FB10B99B6E6687 /* Pods_Expenses_ExpensesUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		68CAF9A42C7203090074343D /* ExpensesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesService.swift; sourceTree = "<group>"; };
 		68CAF9A72C722E6F0074343D /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		68CAF9A92C722EF20074343D /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
+		68CAF9AC2C733D630074343D /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		8A60FC73C4397C5C736FCBFA /* Pods-Expenses-ExpensesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expenses-ExpensesUITests.debug.xcconfig"; path = "Target Support Files/Pods-Expenses-ExpensesUITests/Pods-Expenses-ExpensesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EFA4CF01C9DF105E73FA516F /* Pods-Expenses.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expenses.release.xcconfig"; path = "Target Support Files/Pods-Expenses/Pods-Expenses.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,7 +197,8 @@
 		6862884D2C6DF2DA002300D0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6862885A2C6E57BA002300D0 /* DBExpense.swift */,
+				68CAF9AB2C733B3C0074343D /* DB Models */,
+				68CAF9AC2C733D630074343D /* Expense.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -278,6 +281,14 @@
 				68CAF9A72C722E6F0074343D /* Observable.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		68CAF9AB2C733B3C0074343D /* DB Models */ = {
+			isa = PBXGroup;
+			children = (
+				6862885A2C6E57BA002300D0 /* DBExpense.swift */,
+			);
+			path = "DB Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,6 +543,7 @@
 				6862881E2C6D06AE002300D0 /* AppDelegate.swift in Sources */,
 				686288202C6D06AE002300D0 /* SceneDelegate.swift in Sources */,
 				68CAF9A12C6FE4CF0074343D /* ExpenseTableViewSection.swift in Sources */,
+				68CAF9AD2C733D630074343D /* Expense.swift in Sources */,
 				686288542C6E20D0002300D0 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
