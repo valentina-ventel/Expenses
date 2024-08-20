@@ -12,7 +12,7 @@ protocol ExpenseViewModelProtocol {
   var expenseWasAddedSuccessfully: Observable<Bool> { get }
   var errorObservable: Observable<String> { get }
   func addExpense(
-    expenseImage: UIImage?,
+    expenseImage: UIImage,
     title: String,
     date: Date,
     price: Float,
@@ -22,16 +22,16 @@ protocol ExpenseViewModelProtocol {
 }
 
 final class ExpenseViewModel: ExpenseViewModelProtocol {
-  private var expensesService: ExpensesService
+  private var expensesService: ExpensesServiceProtocol
   var expenseWasAddedSuccessfully: Observable<Bool> = Observable(false)
   var errorObservable: Observable<String> = Observable("")
 
-  init(service: ExpensesService) {
+  init(service: ExpensesServiceProtocol) {
     self.expensesService = service
   }
 
   func addExpense(
-    expenseImage: UIImage?,
+    expenseImage: UIImage,
     title: String,
     date: Date,
     price: Float,

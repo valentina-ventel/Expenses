@@ -8,15 +8,15 @@
 import Foundation
 import RealmSwift
 
-protocol ExpenseServiceProtocol {
+protocol ExpensesServiceProtocol {
   func addExpense(
     expense: Expense,
     completionHandler: @escaping(Result<Void, Error>) -> ()
   )
-  func getAllExpenses()
+  func fetchExpenses() -> [Expense]
 }
 
-struct ExpensesService: ExpenseServiceProtocol {
+struct ExpensesService: ExpensesServiceProtocol {
   private var realmDB: Realm
   
   init?() {
@@ -40,18 +40,24 @@ struct ExpensesService: ExpenseServiceProtocol {
     } catch {
       completionHandler(.failure(error))
     }
-    getAllExpenses()
   }
   
-  func getAllExpenses() {
-    let expenses = realmDB.objects(DBExpense.self)
-    
-    // Do something with the fetched data
-    for expense in expenses {
-      print(expense.imageData)
-      print("Expense Title: \(expense.title), Value: \(expense.price)")
+  func fetchExpenses() -> [Expense] {
+    let dbExpenses = realmDB.objects(DBExpense.self)
+    let expenses: [Expense] = dbExpenses.map {
+      Expense(
+        title: $0.title,
+        date: $0.date,
+        price: $0.price,
+        currency: $0.currency,
+        type: ExpenseType(rawValue: $0.type) ?? .invoice,
+        isStoredLocally: $0.isStoredLocally,
+        localID: $0.localID,
+        id: $0.id.value,
+        expenseImage: UIImage(data: $0.imageData!) ?? UIImage()
+      )
     }
-    print("---------------")
-    print("Number of all expenses: \(expenses.count)")
+
+    return expenses
   }
 }

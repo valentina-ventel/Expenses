@@ -17,46 +17,76 @@ final class MainViewController:
     static let expenseSectionHeight: CGFloat = 48
     static let expenseCellIdentifier: String = "ExpenseTableViewCell"
     static let expenseSectionIdentifier: String = "ExpenseTableViewSection"
-    static let expenseSegueIdentifier: String = "showExpenseSegue"
+    static let storyboardID: String = "Main"
+    static let expenseViewControllerID = "ExpenseViewController"
+    static let fatalErrorMesssage: String = "Failed Expenses Service"
   }
 
-  @IBOutlet private weak var expencesTableView: UITableView?
+  @IBOutlet private weak var expensesTableView: UITableView?
 
-  private var expensesLocalService: ExpensesService?
-  private var expensesDictionary = [Date: [Expense]] ()
-  private var expensesMonths = [Date]()
+  var mainViewModel: MainViewModelProtocol?
+
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    guard let expenseService = appDelegate.expensesService else { fatalError(Constants.fatalErrorMesssage) }
+    self.mainViewModel = MainViewModel(service: expenseService)
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    mainViewModel?.fetchExpenses()
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    expencesTableView?.register(
+    expensesTableView?.register(
       UINib(nibName: Constants.expenseCellIdentifier, bundle: nil),
       forCellReuseIdentifier: Constants.expenseCellIdentifier
     )
-    expencesTableView?.register(
+    expensesTableView?.register(
       UINib(nibName: Constants.expenseSectionIdentifier, bundle: nil),
       forHeaderFooterViewReuseIdentifier: Constants.expenseSectionIdentifier
     )
-    expencesTableView?.showsVerticalScrollIndicator = false
-
-    expensesDictionary = groupExpensesByMonth(expenses: dummyExpenses)
-    expensesMonths = expensesDictionary.keys.sorted {$0 > $1}
+    expensesTableView?.showsVerticalScrollIndicator = false
+    setupBindings()
   }
-  
+
+  private func setupBindings() {
+    mainViewModel?.isLoading.bind() { [weak self] isLoading in
+      if (!isLoading && self?.mainViewModel?.numberOfSections != nil) {
+        DispatchQueue.main.async {
+          self?.expensesTableView?.reloadData()
+        }
+      }
+    }
+  }
+
+  private func initExpenseVC() {
+    let storyboard = UIStoryboard(name: Constants.storyboardID, bundle: nil)
+    guard let expenseVC = storyboard.instantiateViewController(withIdentifier: Constants.expenseViewControllerID) as? ExpenseViewController else { return }
+    expenseVC.modalPresentationStyle = .fullScreen
+    
+    self.present(expenseVC, animated: true, completion: nil)
+  }
+
+  @IBAction func goToExpenseVCAction(_ sender: Any) {
+    initExpenseVC()
+  }
+
   // MARK: TableView delegates
-  
+  func numberOfSections(
+    in tableView: UITableView
+  ) -> Int {
+    mainViewModel?.numberOfSections ?? 0
+  }
+
   func tableView(
     _ tableView: UITableView,
     numberOfRowsInSection section: Int
   ) -> Int {
-    let key = expensesMonths[section]
-    return expensesDictionary[key]?.count ?? 0
-  }
-  
-  func numberOfSections(
-    in tableView: UITableView
-  ) -> Int {
-    expensesMonths.count
+    mainViewModel?.getNumberOfExpenses(for: section) ?? 0
   }
 
   func tableView(
@@ -66,7 +96,7 @@ final class MainViewController:
     guard let sectionView = tableView.dequeueReusableHeaderFooterView(
       withIdentifier: Constants.expenseSectionIdentifier
     ) as? ExpenseTableViewSection else { return UIView() }
-    sectionView.custom(sectionTitle: expensesMonths[section].monthString())
+    sectionView.custom(sectionTitle: mainViewModel?.getTitle(for: section) ?? "")
 
     return sectionView
   }
@@ -79,10 +109,14 @@ final class MainViewController:
       withIdentifier: Constants.expenseCellIdentifier,
       for: indexPath
     ) as? ExpenseTableViewCell else { return UITableViewCell() }
-    
-    let monthKey = expensesMonths[indexPath.section]
-    guard let expenses = expensesDictionary[monthKey] else { return UITableViewCell() }
-    expenseCell.updateUIWithData(expense: expenses[indexPath.row])
+
+    guard let mainViewModelProtocol = mainViewModel else { return UITableViewCell() }
+    expenseCell.updateUIWithData(
+      expense: mainViewModelProtocol.getExpense(
+        at: indexPath.row,
+        for: indexPath.section
+      )
+    )
 
     return expenseCell
   }
@@ -94,11 +128,17 @@ final class MainViewController:
     return Constants.expenseCellHeight
   }
 
-  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  func tableView(
+    _ tableView: UITableView,
+    heightForHeaderInSection section: Int
+  ) -> CGFloat {
     return Constants.expenseSectionHeight
   }
 
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    performSegue(withIdentifier: Constants.expenseSegueIdentifier, sender: nil)
+  func tableView(
+    _ tableView: UITableView,
+    didSelectRowAt indexPath: IndexPath
+  ) {
+    // TODO: Go to ExpenseVC to load expense details
   }
 }

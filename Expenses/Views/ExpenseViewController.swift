@@ -32,12 +32,13 @@ final class ExpenseViewController:
   private var selectedExpenseTypePickerIndex: Int = 0
   private var expenseImage: UIImage?
 
-  var expenseViewModel: ExpenseViewModel?
+  var expenseViewModel: ExpenseViewModelProtocol?
 
   required init?(coder: NSCoder) {
     super.init(coder: coder)
     
-    guard let expenseService = ExpensesService() else { fatalError("Failed Expenses Service") }
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    guard let expenseService = appDelegate.expensesService else { fatalError("Failed Expenses Service") }
     self.expenseViewModel = ExpenseViewModel(service: expenseService)
   }
 
@@ -114,6 +115,10 @@ final class ExpenseViewController:
     )
   }
 
+  @IBAction func goBackAction(_ sender: Any) {
+    self.dismiss(animated: true)
+  }
+  
   @IBAction private func takePhotoAction(
     _ sender: Any
   ) {
@@ -145,6 +150,7 @@ final class ExpenseViewController:
       return
     }
     
+    guard let expenseImage = expenseImage else { return }
     expenseViewModel?.addExpense(
       expenseImage: expenseImage,
       title: expenseTitle,
