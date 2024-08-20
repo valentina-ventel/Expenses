@@ -11,9 +11,7 @@ final class ExpenseViewController:
   UIViewController,
   UIImagePickerControllerDelegate,
   UINavigationControllerDelegate,
-  UITextFieldDelegate,
-  UIPickerViewDelegate,
-  UIPickerViewDataSource
+  UITextFieldDelegate
 {
   private enum Constants {
     static let pickerViewComponentsNumber: Int = 1
@@ -29,7 +27,7 @@ final class ExpenseViewController:
   @IBOutlet private weak var expenseImageView: UIImageView!
   @IBOutlet private weak var expenseTitleTextField: UITextField!
   @IBOutlet private weak var expensePriceTextField: UITextField!
-  @IBOutlet private weak var expenseTypePicker: UIPickerView!
+  @IBOutlet private weak var expenseTypeSegmentedControl: UISegmentedControl!
   @IBOutlet private weak var expenseDatePicker: UIDatePicker!
   @IBOutlet weak var expenseCurrencyTextField: UITextField!
   @IBOutlet weak var activityIndicatorView: UIView!
@@ -79,12 +77,7 @@ final class ExpenseViewController:
       : String(describing: price)
     expenseCurrencyTextField.text = currency
     expenseDatePicker.date = date
-    expenseTypePicker.selectRow(
-      type.rawValue,
-      inComponent: 0,
-      animated: false
-    )
-    
+    expenseTypeSegmentedControl.selectedSegmentIndex = type.rawValue
   }
   
   private func setupBindings() {
@@ -168,7 +161,7 @@ final class ExpenseViewController:
       date: expenseDatePicker.date,
       price: Float(expensePrice) ?? .zero,
       currency: expenseCurrency,
-      type: ExpenseType.allCases[selectedExpenseTypePickerIndex]
+      type: ExpenseType.allCases[expenseTypeSegmentedControl.selectedSegmentIndex]
     )
   }
   
@@ -194,33 +187,5 @@ final class ExpenseViewController:
     textField.resignFirstResponder()
   }
   
-  // MARK: UIPickerViewDelegate && UIPickerViewDataSource
-  
-  func pickerView(
-    _ pickerView: UIPickerView,
-    titleForRow row: Int,
-    forComponent component: Int
-  ) -> String? {
-    return ExpenseType.allCases[row].stringValue
-  }
-  
-  func numberOfComponents(in pickerView: UIPickerView) -> Int {
-    return Constants.pickerViewComponentsNumber
-  }
-  
-  func pickerView(
-    _ pickerView: UIPickerView,
-    numberOfRowsInComponent component: Int
-  ) -> Int {
-    return ExpenseType.allCases.count
-  }
-  
-  func pickerView(
-    _ pickerView: UIPickerView,
-    didSelectRow row: Int,
-    inComponent component: Int
-  ) {
-    selectedExpenseTypePickerIndex = row
-  }
 }
 
