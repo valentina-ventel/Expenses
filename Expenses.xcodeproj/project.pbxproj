@@ -23,14 +23,14 @@
 		686288592C6E4764002300D0 /* ExpenseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686288582C6E4764002300D0 /* ExpenseTableViewCell.xib */; };
 		6862885B2C6E57BA002300D0 /* DBExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862885A2C6E57BA002300D0 /* DBExpense.swift */; };
 		6862885E2C6E59B0002300D0 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862885D2C6E59B0002300D0 /* DateExtension.swift */; };
-		68CAF99C2C6F90C40074343D /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF99B2C6F90C40074343D /* GlobalFunctions.swift */; };
+		68CAF99C2C6F90C40074343D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF99B2C6F90C40074343D /* Helpers.swift */; };
 		68CAF9A12C6FE4CF0074343D /* ExpenseTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9A02C6FE4CF0074343D /* ExpenseTableViewSection.swift */; };
 		68CAF9A32C6FE4DE0074343D /* ExpenseTableViewSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68CAF9A22C6FE4DE0074343D /* ExpenseTableViewSection.xib */; };
-		68CAF9A52C7203090074343D /* ExpensesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9A42C7203090074343D /* ExpensesService.swift */; };
+		68CAF9A52C7203090074343D /* ExpensesServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9A42C7203090074343D /* ExpensesServiceImpl.swift */; };
 		68CAF9A82C722E6F0074343D /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9A72C722E6F0074343D /* Observable.swift */; };
-		68CAF9AA2C722EF20074343D /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9A92C722EF20074343D /* ExpenseViewModel.swift */; };
+		68CAF9AA2C722EF20074343D /* ExpenseViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9A92C722EF20074343D /* ExpenseViewModelImpl.swift */; };
 		68CAF9AD2C733D630074343D /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9AC2C733D630074343D /* Expense.swift */; };
-		68CAF9AF2C73CA530074343D /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9AE2C73CA530074343D /* MainViewModel.swift */; };
+		68CAF9AF2C73CA530074343D /* MainViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAF9AE2C73CA530074343D /* MainViewModelImpl.swift */; };
 		C67A9209C0FDA657BFC04064 /* Pods_Expenses_ExpensesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EFDB3D63FB10B99B6E6687 /* Pods_Expenses_ExpensesUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,14 +77,14 @@
 		686288582C6E4764002300D0 /* ExpenseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseTableViewCell.xib; sourceTree = "<group>"; };
 		6862885A2C6E57BA002300D0 /* DBExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBExpense.swift; sourceTree = "<group>"; };
 		6862885D2C6E59B0002300D0 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
-		68CAF99B2C6F90C40074343D /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		68CAF99B2C6F90C40074343D /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		68CAF9A02C6FE4CF0074343D /* ExpenseTableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewSection.swift; sourceTree = "<group>"; };
 		68CAF9A22C6FE4DE0074343D /* ExpenseTableViewSection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseTableViewSection.xib; sourceTree = "<group>"; };
-		68CAF9A42C7203090074343D /* ExpensesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesService.swift; sourceTree = "<group>"; };
+		68CAF9A42C7203090074343D /* ExpensesServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesServiceImpl.swift; sourceTree = "<group>"; };
 		68CAF9A72C722E6F0074343D /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
-		68CAF9A92C722EF20074343D /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
+		68CAF9A92C722EF20074343D /* ExpenseViewModelImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModelImpl.swift; sourceTree = "<group>"; };
 		68CAF9AC2C733D630074343D /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
-		68CAF9AE2C73CA530074343D /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		68CAF9AE2C73CA530074343D /* MainViewModelImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelImpl.swift; sourceTree = "<group>"; };
 		8A60FC73C4397C5C736FCBFA /* Pods-Expenses-ExpensesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expenses-ExpensesUITests.debug.xcconfig"; path = "Target Support Files/Pods-Expenses-ExpensesUITests/Pods-Expenses-ExpensesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EFA4CF01C9DF105E73FA516F /* Pods-Expenses.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expenses.release.xcconfig"; path = "Target Support Files/Pods-Expenses/Pods-Expenses.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,8 +199,8 @@
 		6862884D2C6DF2DA002300D0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				68CAF9AB2C733B3C0074343D /* DB Models */,
 				68CAF9AC2C733D630074343D /* Expense.swift */,
+				68CAF9AB2C733B3C0074343D /* DB Models */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -220,8 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				68CAF9A62C722E4F0074343D /* Helpers */,
-				68CAF9AE2C73CA530074343D /* MainViewModel.swift */,
-				68CAF9A92C722EF20074343D /* ExpenseViewModel.swift */,
+				68CAF9AE2C73CA530074343D /* MainViewModelImpl.swift */,
+				68CAF9A92C722EF20074343D /* ExpenseViewModelImpl.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -229,7 +229,7 @@
 		686288502C6DF308002300D0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				68CAF9A42C7203090074343D /* ExpensesService.swift */,
+				68CAF9A42C7203090074343D /* ExpensesServiceImpl.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -273,7 +273,7 @@
 		68CAF99D2C6F90D30074343D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				68CAF99B2C6F90C40074343D /* GlobalFunctions.swift */,
+				68CAF99B2C6F90C40074343D /* Helpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -536,13 +536,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				68CAF9A82C722E6F0074343D /* Observable.swift in Sources */,
-				68CAF9AA2C722EF20074343D /* ExpenseViewModel.swift in Sources */,
-				68CAF9A52C7203090074343D /* ExpensesService.swift in Sources */,
+				68CAF9AA2C722EF20074343D /* ExpenseViewModelImpl.swift in Sources */,
+				68CAF9A52C7203090074343D /* ExpensesServiceImpl.swift in Sources */,
 				6862885B2C6E57BA002300D0 /* DBExpense.swift in Sources */,
 				6862885E2C6E59B0002300D0 /* DateExtension.swift in Sources */,
 				686288572C6E46FF002300D0 /* ExpenseTableViewCell.swift in Sources */,
-				68CAF99C2C6F90C40074343D /* GlobalFunctions.swift in Sources */,
-				68CAF9AF2C73CA530074343D /* MainViewModel.swift in Sources */,
+				68CAF99C2C6F90C40074343D /* Helpers.swift in Sources */,
+				68CAF9AF2C73CA530074343D /* MainViewModelImpl.swift in Sources */,
 				686288222C6D06AE002300D0 /* ExpenseViewController.swift in Sources */,
 				6862881E2C6D06AE002300D0 /* AppDelegate.swift in Sources */,
 				686288202C6D06AE002300D0 /* SceneDelegate.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol MainViewModelProtocol {
+protocol MainViewModel {
   var isLoading: Observable<Bool> { get }
   var numberOfSections: Int { get }
   func fetchExpenses()
@@ -16,18 +16,18 @@ protocol MainViewModelProtocol {
   func getExpense(at index: Int, for section: Int) -> Expense
 }
 
-final class MainViewModel: MainViewModelProtocol {
+final class MainViewModelImpl: MainViewModel {
   var isLoading: Observable<Bool> = Observable(false)
   var numberOfSections: Int {
     guard let expensesDictionary = expensesDictionary else { return 0 }
     return expensesDictionary.keys.count
   }
 
-  private var expensesService: ExpensesServiceProtocol
+  private var expensesService: ExpensesService
   private var expensesDictionary: [Date : [Expense]]?
   private var expensesMonthsArray: [Date]?
 
-  required init(service: ExpensesServiceProtocol) {
+  required init(service: ExpensesService) {
     self.expensesService = service
   }
 

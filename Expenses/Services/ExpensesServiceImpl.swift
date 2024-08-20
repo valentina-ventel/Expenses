@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-protocol ExpensesServiceProtocol {
+protocol ExpensesService {
   func addExpense(
     expense: Expense,
     completionHandler: @escaping(Result<Void, Error>) -> ()
@@ -16,7 +16,7 @@ protocol ExpensesServiceProtocol {
   func fetchExpenses() -> [Expense]
 }
 
-struct ExpensesService: ExpensesServiceProtocol {
+struct ExpensesServiceImpl: ExpensesService {
   private var realmDB: Realm
   
   init?() {
@@ -33,7 +33,7 @@ struct ExpensesService: ExpensesServiceProtocol {
   ) {
     guard let image = expense.image else { return }
 
-    saveExpenseImageToDisk(
+    saveImageToDisk(
       image: image,
       with: expense.localID
     ) { imageURL in
@@ -44,7 +44,6 @@ struct ExpensesService: ExpensesServiceProtocol {
           expense: expense,
           completionHandler: completionHandler
         )
-        
       }
   }
   
@@ -60,37 +59,6 @@ struct ExpensesService: ExpensesServiceProtocol {
       completionHandler(.success(()))
     } catch {
       completionHandler(.failure(error))
-    }
-  }
-
-  private func saveExpenseImageToDisk(
-    image: UIImage,
-    with name: String,
-    completionHandler: @escaping(URL?) -> ()
-  ) {
-    guard let documentsDirectory = FileManager.default.urls(
-      for: .documentDirectory,
-      in: .userDomainMask
-    ).first else {
-      fatalError("Failed to find documents directory.")
-    }
-
-    let imageURL = documentsDirectory.appendingPathComponent("\(name).jpg")
-
-    guard let data = image.jpegData(compressionQuality: 0) else {
-      fatalError("Failed to convert image to JPG data.")
-    }
-
-    DispatchQueue.global(qos: .background).async {
-      do {
-        try data.write(to: imageURL)
-
-        DispatchQueue.main.async {
-          completionHandler(imageURL)
-        }
-      } catch {
-        completionHandler(nil)
-      }
     }
   }
 

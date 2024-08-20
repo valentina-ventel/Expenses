@@ -9,13 +9,13 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  var expensesService: ExpensesServiceProtocol?
+  var expensesService: ExpensesService?
 
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    guard let expensesService = ExpensesService() else { fatalError("Failed ExpensesService") }
+    guard let expensesService = ExpensesServiceImpl() else { fatalError("Failed ExpensesService") }
     self.expensesService = expensesService
     
     return true

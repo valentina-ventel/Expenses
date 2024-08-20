@@ -24,13 +24,13 @@ final class MainViewController:
 
   @IBOutlet private weak var expensesTableView: UITableView?
 
-  var mainViewModel: MainViewModelProtocol?
+  var mainViewModel: MainViewModel?
 
   required init?(coder: NSCoder) {
     super.init(coder: coder)
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     guard let expenseService = appDelegate.expensesService else { fatalError(Constants.fatalErrorMesssage) }
-    self.mainViewModel = MainViewModel(service: expenseService)
+    self.mainViewModel = MainViewModelImpl(service: expenseService)
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +41,11 @@ final class MainViewController:
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    setupTableView()
+    setupBindings()
+  }
+
+  private func setupTableView() {
     expensesTableView?.register(
       UINib(nibName: Constants.expenseCellIdentifier, bundle: nil),
       forCellReuseIdentifier: Constants.expenseCellIdentifier
@@ -50,7 +55,6 @@ final class MainViewController:
       forHeaderFooterViewReuseIdentifier: Constants.expenseSectionIdentifier
     )
     expensesTableView?.showsVerticalScrollIndicator = false
-    setupBindings()
   }
 
   private func setupBindings() {
@@ -63,7 +67,7 @@ final class MainViewController:
     }
   }
 
-  private func initExpenseVC() {
+  private func showExpenseVC() {
     let storyboard = UIStoryboard(name: Constants.storyboardID, bundle: nil)
     guard let expenseVC = storyboard.instantiateViewController(withIdentifier: Constants.expenseViewControllerID) as? ExpenseViewController else { return }
     expenseVC.modalPresentationStyle = .fullScreen
@@ -72,7 +76,7 @@ final class MainViewController:
   }
 
   @IBAction func goToExpenseVCAction(_ sender: Any) {
-    initExpenseVC()
+    showExpenseVC()
   }
 
   // MARK: TableView delegates

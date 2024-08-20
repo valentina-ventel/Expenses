@@ -13,7 +13,7 @@ class DBExpense: Object {
   @objc dynamic var localID: String = ""
   @objc dynamic var title: String = ""
   @objc dynamic var date: Date = Date.now
-  @objc dynamic var price: Float = 0.0
+  @objc dynamic var price: Float = .zero
   @objc dynamic var currency: String = ""
   @objc dynamic var type: Int = 0
   @objc dynamic var isStoredLocally: Bool = false

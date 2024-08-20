@@ -17,6 +17,13 @@ final class ExpenseViewController:
 {
   private enum Constants {
     static let pickerViewComponentsNumber: Int = 1
+    static let alertErrorTitle: String = "Error"
+    static let alertErrorMessage: String = "The expense infos are required"
+    static let buttonTitle: String = "Ok"
+    static let cameraString: String = "camera"
+    static let alertSuccessTitle: String = "Congratulation"
+    static let alertSuccessMessage: String = "A new expense was added successfully!"
+    static let fatalErrorMessage: String = "Failed Expenses Service"
   }
 
   @IBOutlet private weak var expenseImageView: UIImageView!
@@ -32,14 +39,14 @@ final class ExpenseViewController:
   private var selectedExpenseTypePickerIndex: Int = 0
   private var expenseImage: UIImage?
 
-  var expenseViewModel: ExpenseViewModelProtocol?
+  var expenseViewModel: ExpenseViewModel?
 
   required init?(coder: NSCoder) {
     super.init(coder: coder)
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    guard let expenseService = appDelegate.expensesService else { fatalError("Failed Expenses Service") }
-    self.expenseViewModel = ExpenseViewModel(service: expenseService)
+    guard let expenseService = appDelegate.expensesService else { fatalError(Constants.fatalErrorMessage) }
+    self.expenseViewModel = ExpenseViewModelImpl(service: expenseService)
   }
 
   override func viewDidLoad() {
@@ -51,33 +58,33 @@ final class ExpenseViewController:
   
   private func setupUI(
     for expense: Bool = true,
-    image: UIImage = UIImage(systemName: "camera") ?? UIImage(),
+    image: UIImage = UIImage(systemName: Constants.cameraString) ?? UIImage(),
     title: String = "",
     date: Date = Date.now,
     price: Float = .zero,
     currency: String = "",
     type: ExpenseType = ExpenseType.receipt
   ) {
-    expense
-    ? nil
-    : self.showAlertPopup(
-        title: "Congratulation",
-        message: "A new expense was added successfully!"
-    )
-    DispatchQueue.main.async {
-      self.expenseImageView.image = image
-      self.expenseTitleTextField.text = title
-      self.expensePriceTextField.text = (price == .zero)
-        ? ""
-        : String(describing: price)
-      self.expenseCurrencyTextField.text = currency
-      self.expenseDatePicker.date = date
-      self.expenseTypePicker.selectRow(
-        type.rawValue,
-        inComponent: 0,
-        animated: false
+    if !expense {
+      showAlertPopup(
+        title: Constants.alertSuccessTitle,
+        message: Constants.alertSuccessMessage
       )
     }
+
+    expenseImageView.image = image
+    expenseTitleTextField.text = title
+    expensePriceTextField.text = (price == .zero)
+      ? ""
+      : String(describing: price)
+    expenseCurrencyTextField.text = currency
+    expenseDatePicker.date = date
+    expenseTypePicker.selectRow(
+      type.rawValue,
+      inComponent: 0,
+      animated: false
+    )
+    
   }
   
   private func setupBindings() {
@@ -85,17 +92,17 @@ final class ExpenseViewController:
       self?.setupActivityIndicatorState(isLoading)
     }
     expenseViewModel?.errorObservable.bind() { [weak self] errorMessage in
-      errorMessage.isEmpty
-      ? nil
-      : self?.showAlertPopup(
-          title: "Error",
+      if !errorMessage.isEmpty {
+        self?.showAlertPopup(
+          title: Constants.alertErrorTitle,
           message: errorMessage
-      )
+        )
+      }
     }
     expenseViewModel?.expenseWasAddedSuccessfully.bind() { [weak self] wasSuccessfully in
-      !wasSuccessfully
-      ? nil
-      : self?.setupUI(for: false)
+      if wasSuccessfully {
+        self?.setupUI(for: false)
+      }
     }
   }
   
@@ -111,12 +118,11 @@ final class ExpenseViewController:
     let alertController = customAlertController(
       title: title,
       message: message,
-      buttonTitle: "Ok"
+      buttonTitle: Constants.buttonTitle
     )
-    self.present(
+    present(
       alertController,
-      animated: true,
-      completion: nil
+      animated: true
     )
   }
 
@@ -149,8 +155,8 @@ final class ExpenseViewController:
           !expenseCurrency.isEmpty
     else {
       showAlertPopup(
-        title: "Error",
-        message: "The expense infos are required"
+        title: Constants.alertErrorTitle,
+        message: Constants.alertErrorMessage
       )
       return
     }

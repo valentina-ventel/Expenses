@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol ExpenseViewModelProtocol {
+protocol ExpenseViewModel {
   var isLoading: Observable<Bool> { get }
   var expenseWasAddedSuccessfully: Observable<Bool> { get }
   var errorObservable: Observable<String> { get }
@@ -22,13 +22,13 @@ protocol ExpenseViewModelProtocol {
   )
 }
 
-final class ExpenseViewModel: ExpenseViewModelProtocol {
-  private var expensesService: ExpensesServiceProtocol
+final class ExpenseViewModelImpl: ExpenseViewModel {
+  private var expensesService: ExpensesService
   var isLoading: Observable<Bool> = Observable(false)
   var expenseWasAddedSuccessfully: Observable<Bool> = Observable(false)
   var errorObservable: Observable<String> = Observable("")
 
-  init(service: ExpensesServiceProtocol) {
+  init(service: ExpensesService) {
     self.expensesService = service
   }
 
