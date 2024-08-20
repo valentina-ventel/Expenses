@@ -26,7 +26,8 @@ struct Expense {
   var currency: String
   var type: ExpenseType
   var isStoredLocally: Bool
-  var image: UIImage
+  var image: UIImage?
+  var imageURL: URL
   
   init(
     title: String,
@@ -37,7 +38,8 @@ struct Expense {
     isStoredLocally: Bool,
     localID: String = UUID().uuidString,
     id: Int? = nil,
-    expenseImage: UIImage
+    image: UIImage? = UIImage(),
+    imageURL: URL = URL(fileURLWithPath: "")
   ) {
     self.id = id
     self.localID = localID
@@ -47,6 +49,7 @@ struct Expense {
     self.currency = currency
     self.type = type
     self.isStoredLocally = isStoredLocally
-    self.image = expenseImage
+    self.image = image
+    self.imageURL = imageURL
   }
 }

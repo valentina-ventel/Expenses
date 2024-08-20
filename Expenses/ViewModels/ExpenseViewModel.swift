@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 protocol ExpenseViewModelProtocol {
+  var isLoading: Observable<Bool> { get }
   var expenseWasAddedSuccessfully: Observable<Bool> { get }
   var errorObservable: Observable<String> { get }
   func addExpense(
@@ -23,6 +24,7 @@ protocol ExpenseViewModelProtocol {
 
 final class ExpenseViewModel: ExpenseViewModelProtocol {
   private var expensesService: ExpensesServiceProtocol
+  var isLoading: Observable<Bool> = Observable(false)
   var expenseWasAddedSuccessfully: Observable<Bool> = Observable(false)
   var errorObservable: Observable<String> = Observable("")
 
@@ -38,6 +40,7 @@ final class ExpenseViewModel: ExpenseViewModelProtocol {
     currency: String,
     type: ExpenseType
   ) {
+    isLoading.value.toggle()
     let expense = Expense(
       title: title,
       date: date,
@@ -45,9 +48,11 @@ final class ExpenseViewModel: ExpenseViewModelProtocol {
       currency: currency,
       type: type,
       isStoredLocally: true,
-      expenseImage: expenseImage
+      image: expenseImage
     )
     expensesService.addExpense(expense: expense) { result in
+      self.isLoading.value.toggle()
+
       switch result {
       case .success():
         self.expenseWasAddedSuccessfully.value = true

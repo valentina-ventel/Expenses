@@ -54,7 +54,7 @@ final class ExpenseViewController:
     image: UIImage = UIImage(systemName: "camera") ?? UIImage(),
     title: String = "",
     date: Date = Date.now,
-    price: Float = 0.0,
+    price: Float = .zero,
     currency: String = "",
     type: ExpenseType = ExpenseType.receipt
   ) {
@@ -67,7 +67,9 @@ final class ExpenseViewController:
     DispatchQueue.main.async {
       self.expenseImageView.image = image
       self.expenseTitleTextField.text = title
-      self.expensePriceTextField.text = String(describing: price)
+      self.expensePriceTextField.text = (price == .zero)
+        ? ""
+        : String(describing: price)
       self.expenseCurrencyTextField.text = currency
       self.expenseDatePicker.date = date
       self.expenseTypePicker.selectRow(
@@ -79,6 +81,9 @@ final class ExpenseViewController:
   }
   
   private func setupBindings() {
+    expenseViewModel?.isLoading.bind() { [weak self] isLoading in
+      self?.setupActivityIndicatorState(isLoading)
+    }
     expenseViewModel?.errorObservable.bind() { [weak self] errorMessage in
       errorMessage.isEmpty
       ? nil
@@ -94,9 +99,9 @@ final class ExpenseViewController:
     }
   }
   
-  private func setupActivityIndicatorState(_ isHidden: Bool) {
-    activityIndicatorView.isHidden = isHidden
-    isHidden ? activityIndicator.stopAnimating() : activityIndicator.startAnimating()
+  private func setupActivityIndicatorState(_ isLoading: Bool) {
+    activityIndicatorView.isHidden = !isLoading
+    isLoading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
   }
   
   private func showAlertPopup(
@@ -155,7 +160,7 @@ final class ExpenseViewController:
       expenseImage: expenseImage,
       title: expenseTitle,
       date: expenseDatePicker.date,
-      price: Float(expensePrice) ?? 0.0,
+      price: Float(expensePrice) ?? .zero,
       currency: expenseCurrency,
       type: ExpenseType.allCases[selectedExpenseTypePickerIndex]
     )

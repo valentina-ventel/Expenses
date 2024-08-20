@@ -17,7 +17,7 @@ class DBExpense: Object {
   @objc dynamic var currency: String = ""
   @objc dynamic var type: Int = 0
   @objc dynamic var isStoredLocally: Bool = false
-  @objc dynamic var imageData: Data?
+  @objc dynamic var imageURL: String = ""
   
   override class func primaryKey() -> String? { "localID" }
 
@@ -25,9 +25,7 @@ class DBExpense: Object {
     super.init()
   }
 
-  required init(
-    expense: Expense
-  ) {
+  required init(expense: Expense) {
     self.id.value = expense.id
     self.localID = expense.localID
     self.title = expense.title
@@ -36,6 +34,6 @@ class DBExpense: Object {
     self.currency = expense.currency
     self.type = expense.type.rawValue
     self.isStoredLocally = expense.isStoredLocally
-    self.imageData = expense.image.jpegData(compressionQuality: 1.0)
+    self.imageURL = expense.imageURL.path
   }
 }
