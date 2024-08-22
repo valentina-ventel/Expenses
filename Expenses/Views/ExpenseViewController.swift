@@ -16,7 +16,7 @@ final class ExpenseViewController:
   private enum Constants {
     static let pickerViewComponentsNumber: Int = 1
     static let alertErrorTitle: String = "Error"
-    static let alertErrorMessage: String = "The expense infos are required"
+    static let alertErrorMessage: String = "The expense info are required"
     static let buttonTitle: String = "Ok"
     static let cameraString: String = "camera"
     static let alertSuccessTitle: String = "Congratulation"
@@ -32,9 +32,12 @@ final class ExpenseViewController:
   @IBOutlet weak var expenseCurrencyTextField: UITextField!
   @IBOutlet weak var activityIndicatorView: UIView!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+  @IBOutlet weak var scrollView: UIScrollView!
+  @IBOutlet weak var textFieldsStackView: UIStackView!
+  
   private var imagePickerController: UIImagePickerController? = UIImagePickerController()
   private var selectedExpenseTypePickerIndex: Int = 0
+  private var isKeyboardVisible: Bool = false
   private var expenseImage: UIImage?
 
   var expenseViewModel: ExpenseViewModel?
@@ -47,11 +50,28 @@ final class ExpenseViewController:
     self.expenseViewModel = ExpenseViewModelImpl(service: expenseService)
   }
 
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     imagePickerController?.delegate = self
     setupActivityIndicatorState(true)
     setupBindings()
+    
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(updateScrollContentSize),
+      name: UIResponder.keyboardWillShowNotification,
+      object: nil
+    )
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(updateScrollContentSize),
+      name: UIResponder.keyboardWillHideNotification,
+      object: nil
+    )
   }
   
   private func setupUI(
@@ -103,7 +123,7 @@ final class ExpenseViewController:
     activityIndicatorView.isHidden = !isLoading
     isLoading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
   }
-  
+
   private func showAlertPopup(
     title: String,
     message: String
@@ -117,6 +137,24 @@ final class ExpenseViewController:
       alertController,
       animated: true
     )
+  }
+
+  @objc func updateScrollContentSize(_ notification: Notification) {
+    guard let userInfo = notification.userInfo,
+          let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+      return
+    }
+    if isKeyboardVisible == !(notification.name == UIResponder.keyboardWillShowNotification) {
+      isKeyboardVisible = (notification.name == UIResponder.keyboardWillShowNotification)
+      let scrollViewContentHeight = isKeyboardVisible
+        ? scrollView.contentSize.height + keyboardFrame.cgRectValue.height
+        : scrollView.contentSize.height - keyboardFrame.cgRectValue.height
+      scrollView.contentSize = CGSize(
+        width: scrollView.frame.width,
+        height:scrollViewContentHeight
+      )
+      scrollView.contentOffset.y = isKeyboardVisible ? textFieldsStackView.frame.origin.y : 0
+    }
   }
 
   @IBAction func goBackAction(_ sender: Any) {
@@ -186,6 +224,6 @@ final class ExpenseViewController:
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
   }
-  
+
 }
 
