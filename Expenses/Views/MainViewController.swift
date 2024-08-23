@@ -67,9 +67,10 @@ final class MainViewController:
     }
   }
 
-  private func showExpenseVC() {
+  private func showExpenseVC(expense: Expense? = nil) {
     let storyboard = UIStoryboard(name: Constants.storyboardID, bundle: nil)
     guard let expenseVC = storyboard.instantiateViewController(withIdentifier: Constants.expenseViewControllerID) as? ExpenseViewController else { return }
+    expenseVC.expenseViewModel?.expense = expense
     expenseVC.modalPresentationStyle = .fullScreen
     
     self.present(expenseVC, animated: true, completion: nil)
@@ -80,6 +81,7 @@ final class MainViewController:
   }
 
   // MARK: TableView delegates
+
   func numberOfSections(
     in tableView: UITableView
   ) -> Int {
@@ -143,6 +145,7 @@ final class MainViewController:
     _ tableView: UITableView,
     didSelectRowAt indexPath: IndexPath
   ) {
-    // TODO: Go to ExpenseVC to load expense details
+    let expense = mainViewModel?.getExpense(at: indexPath.row, for: indexPath.section)
+    showExpenseVC(expense: expense)
   }
 }

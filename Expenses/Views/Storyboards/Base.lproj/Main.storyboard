@@ -306,12 +306,14 @@
                     <connections>
                         <outlet property="activityIndicator" destination="rVg-bl-XHD" id="JCV-6K-Ro2"/>
                         <outlet property="activityIndicatorView" destination="LUO-fR-2CL" id="2uc-rt-7TO"/>
+                        <outlet property="buttonsStackView" destination="Jyb-Jc-3Zp" id="Xp8-zs-ygR"/>
                         <outlet property="expenseCurrencyTextField" destination="HEQ-ez-dLb" id="WHI-L8-CSo"/>
                         <outlet property="expenseDatePicker" destination="ces-TS-s1A" id="exK-Ux-z1M"/>
                         <outlet property="expenseImageView" destination="03t-X7-nTi" id="CYF-6z-XLf"/>
                         <outlet property="expensePriceTextField" destination="Rym-o7-fdV" id="TUq-A3-xNj"/>
                         <outlet property="expenseTitleTextField" destination="Mp6-l1-uJ6" id="EHN-f0-OMH"/>
                         <outlet property="expenseTypeSegmentedControl" destination="uOr-aW-4la" id="gQn-13-yit"/>
+                        <outlet property="saveButton" destination="lCX-j5-AwC" id="JLv-Fi-TVs"/>
                         <outlet property="scrollView" destination="SqZ-d1-fFQ" id="UCX-lr-rtI"/>
                         <outlet property="textFieldsStackView" destination="MSF-Aw-W2u" id="nPb-EF-iBT"/>
                     </connections>

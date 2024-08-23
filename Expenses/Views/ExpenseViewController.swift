@@ -18,7 +18,6 @@ final class ExpenseViewController:
     static let alertErrorTitle: String = "Error"
     static let alertErrorMessage: String = "The expense info are required"
     static let buttonTitle: String = "Ok"
-    static let cameraString: String = "camera"
     static let alertSuccessTitle: String = "Congratulation"
     static let alertSuccessMessage: String = "A new expense was added successfully!"
     static let fatalErrorMessage: String = "Failed Expenses Service"
@@ -34,6 +33,8 @@ final class ExpenseViewController:
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var scrollView: UIScrollView!
   @IBOutlet weak var textFieldsStackView: UIStackView!
+  @IBOutlet weak var saveButton: UIButton!
+  @IBOutlet weak var buttonsStackView: UIStackView!
   
   private var imagePickerController: UIImagePickerController? = UIImagePickerController()
   private var selectedExpenseTypePickerIndex: Int = 0
@@ -59,7 +60,8 @@ final class ExpenseViewController:
     imagePickerController?.delegate = self
     setupActivityIndicatorState(true)
     setupBindings()
-    
+    setupUI()
+
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(updateScrollContentSize),
@@ -74,30 +76,32 @@ final class ExpenseViewController:
     )
   }
   
-  private func setupUI(
-    for expense: Bool = true,
-    image: UIImage = UIImage(systemName: Constants.cameraString) ?? UIImage(),
-    title: String = "",
-    date: Date = Date.now,
-    price: Float = .zero,
-    currency: String = "",
-    type: ExpenseType = ExpenseType.receipt
-  ) {
-    if !expense {
+  private func setupUI() {
+    guard let isEditingContent = expenseViewModel?.isEditingContent else { return }
+    guard let viewModel = expenseViewModel else { return }
+
+    if !isEditingContent {
       showAlertPopup(
         title: Constants.alertSuccessTitle,
         message: Constants.alertSuccessMessage
       )
     }
 
-    expenseImageView.image = image
-    expenseTitleTextField.text = title
-    expensePriceTextField.text = (price == .zero)
+    saveButton.isHidden = !isEditingContent
+    expenseTitleTextField.isUserInteractionEnabled = isEditingContent
+    expensePriceTextField.isUserInteractionEnabled = isEditingContent
+    expenseCurrencyTextField.isUserInteractionEnabled = isEditingContent
+    expenseDatePicker.isUserInteractionEnabled = isEditingContent
+    expenseTypeSegmentedControl.isUserInteractionEnabled = isEditingContent
+    buttonsStackView.isUserInteractionEnabled = isEditingContent
+    expenseImageView.image = viewModel.image
+    expenseTitleTextField.text = viewModel.title
+    expensePriceTextField.text = (viewModel.price == .zero)
       ? ""
-      : String(describing: price)
-    expenseCurrencyTextField.text = currency
-    expenseDatePicker.date = date
-    expenseTypeSegmentedControl.selectedSegmentIndex = type.rawValue
+      : String(describing: viewModel.price)
+    expenseCurrencyTextField.text = viewModel.currency
+    expenseDatePicker.date = viewModel.date
+    expenseTypeSegmentedControl.selectedSegmentIndex = viewModel.type.rawValue
   }
   
   private func setupBindings() {
@@ -114,7 +118,7 @@ final class ExpenseViewController:
     }
     expenseViewModel?.expenseWasAddedSuccessfully.bind() { [weak self] wasSuccessfully in
       if wasSuccessfully {
-        self?.setupUI(for: false)
+        self?.setupUI()
       }
     }
   }
